@@ -1,0 +1,32 @@
+count(0, []).
+count(Count, [Head|Tail]) :- count(TailCount, Tail), Count is TailCount + 1.
+
+sum(0, []).
+sum(Total, [Head|Tail]) :- sum(Sum, Tail), Total is Head + Sum.
+
+average(Average, List) :- sum(Sum, List), count(Count, List), Average is Sum/Count.
+
+yes(Head, [Head|_]).
+
+
+
+
+iterate(Head, [Head|Tail]) :- iterate(Y, Tail).
+
+
+
+
+
+greater(A, B, Out_put) :- 
+    (A > B ->
+        Out_put = A
+    ;   Out_put = B
+    )
+
+
+smallest([], _).
+smallest([Head|Tail], Smallest_element) :-
+    (Head < Smallest_element ->
+        smallest(Tail, Head)
+        ; smallest(Tail, Smallest_element)
+    ).
