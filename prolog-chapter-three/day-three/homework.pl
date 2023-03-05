@@ -1,7 +1,14 @@
 valid_bored([]).
-valid([Head|Tail]) :-
+valid_bored([Head|Tail]) :-
   fd_all_different(Head), 
-  valid(Tail).
+  valid_bored(Tail).
+
+format_sudoku([], _).
+format_sudoku(List, N) :-
+    append(Chunk, Rest, List),
+    length(Chunk, N),
+    write(Chunk), nl,
+    format_list(Rest, N).
 
 sudoku(Bored, Solution) :-
   Solution = Bored, 
@@ -28,9 +35,10 @@ sudoku(Bored, Solution) :-
 
   valid_bored([ Row1, Row2, Row3, Row4, 
                 Column1, Column2, Column3, Column4, 
-                Square1, Square2, Square3, Square4]).
+                Square1, Square2, Square3, Square4]),
+       format_sudoku(Solution, 4). 
 
-sudoku(Bored, Solution) :-
+/*sudoku(Bored, Solution) :-
   Solution = Bored, 
   Bored = [ A1, B1, C1, D1, E1, F1, 
             A2, B2, C2, D2, E2, F2, 
@@ -111,4 +119,4 @@ sudoku(Bored, Solution) :-
 
   valid_bored([ Row1, Row2, Row3, Row4, Row5, Row6, Row7, Row8, Row9, 
                 Column1, Column2, Column3, Column4, Column5, Column6, Column7, Column8, Column9, 
-                Square1, Square2, Square3, Square4, Square5, Square6, Square7, Square8, Square9]).
+                Square1, Square2, Square3, Square4, Square5, Square6, Square7, Square8, Square9]).*/
