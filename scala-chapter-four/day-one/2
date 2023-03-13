@@ -1,0 +1,62 @@
+@main def board: Unit = {
+  val stuff = new TicTacToe(
+    ("X", "X", "X"),
+    ("X", "_", "O"),
+    ("X", "X", "_")) 
+  stuff.validRow()
+  stuff.printBoard()
+  stuff.validCollom()
+} 
+
+class TicTacToe(row1: Tuple3[String, String, String],
+  row2: Tuple3[String, String, String],
+  row3: Tuple3[String, String, String]) {
+
+    val row1 = this.row1.toList
+    val row2 = this.row2.toList
+    val row3 = this.row3.toList
+
+
+  /*def validBoard() = {
+    val row1 = this.row1
+    val row2 = this.row2
+    val row3 = this.row3
+  }*/
+
+
+  // TODO: Change name to something to do with win instead of validate
+  def validRow( ): Boolean = {
+         
+    val value =  row1.distinct.length == 1 ||
+      row2.distinct.length == 1 ||
+      row3.distinct.length == 1
+   
+    return value
+  }
+
+  def validCollom() = {
+    var index = 0
+    row1.foreach { element => {
+      val value = row2(index) == element && 
+        row3(index) == element
+        if(value) {
+          println(value)
+        }
+
+        index += 1
+    }
+  }
+}
+
+  /*def validRow() = {
+
+  }*/
+
+
+
+  def printBoard() = {
+    println(row1)
+    println(row2)
+    println(row3)
+  }
+}
